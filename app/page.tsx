@@ -70,8 +70,8 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-200 p-6 md:p-12 font-sans selection:bg-blue-500/30 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <main className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-200 p-4 sm:p-6 lg:p-12 font-sans selection:bg-blue-500/30 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
 
         {/* Header */}
         <div className="flex flex-col items-center text-center space-y-4">
@@ -79,25 +79,25 @@ export default function Home() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2 sm:gap-3"
           >
-            <Image src="/icon.png" alt="Logo" width={48} height={48} />
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <Image src="/icon.png" alt="Logo" width={40} height={40} className="sm:w-12 sm:h-12" />
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
               CodeBuddy
             </h1>
           </motion.div>
-          <p className="text-neutral-600 dark:text-neutral-400 max-w-lg text-lg">
+          <p className="text-neutral-600 dark:text-neutral-400 max-w-lg text-base sm:text-lg">
             Your AI-powered daily coding companion.
           </p>
         </div>
 
         {/* Mode Switcher */}
         <div className="flex justify-center">
-          <div className="flex items-center p-1 bg-neutral-200 dark:bg-neutral-900 rounded-lg">
+          <div className="flex w-full max-w-md items-stretch sm:items-center sm:w-auto p-1 bg-neutral-200 dark:bg-neutral-900 rounded-lg gap-1 sm:gap-0">
             <button
               onClick={() => setAppMode("review")}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all",
+                "flex-1 sm:flex-initial justify-center flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all",
                 appMode === "review"
                   ? "bg-white dark:bg-neutral-800 text-blue-600 dark:text-blue-400 shadow-sm"
                   : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200"
@@ -109,7 +109,7 @@ export default function Home() {
             <button
               onClick={() => setAppMode("translate")}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all",
+                "flex-1 sm:flex-initial justify-center flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all",
                 appMode === "translate"
                   ? "bg-white dark:bg-neutral-800 text-purple-600 dark:text-purple-400 shadow-sm"
                   : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200"
@@ -123,14 +123,14 @@ export default function Home() {
 
         {/* API Key Input (Common) */}
         <div className="flex justify-center">
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 w-full max-w-sm">
             <label className="text-xs font-semibold uppercase tracking-wider text-neutral-500">OpenAI API Key</label>
             <input
               type="password"
               placeholder="sk-..."
               value={apiKey}
               onChange={(e) => handleApiKeyChange(e.target.value)}
-              className="w-80 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg px-3 py-2 text-sm text-center focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors font-mono"
+              className="w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg px-3 py-2 text-sm text-center focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors font-mono"
             />
           </div>
         </div>
@@ -144,23 +144,23 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[calc(100vh-350px)] min-h-[500px]"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 min-h-0 lg:min-h-[560px]"
             >
 
               {/* Input Section */}
               <div className="flex flex-col gap-4 h-full">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 min-w-0">
                     <Code2 className="w-5 h-5" />
-                    <span className="font-medium">Source Code</span>
+                    <span className="font-medium text-sm sm:text-base">Source Code</span>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2 shrink-0">
                     <ExampleLoader onLoad={handleLoadExample} />
-                    <LanguageSelector value={language} onChange={setLanguage} />
+                    <LanguageSelector value={language} onChange={setLanguage} className="w-[140px] sm:w-[200px]" />
                   </div>
                 </div>
 
-                <div className="relative flex-1 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 shadow-sm overflow-hidden group focus-within:ring-2 focus-within:ring-blue-500/50 transition-all">
+                <div className="relative flex-1 min-h-[320px] lg:min-h-0 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 shadow-sm overflow-hidden group focus-within:ring-2 focus-within:ring-blue-500/50 transition-all">
                   <CodeInput
                     value={code}
                     onChange={setCode}
@@ -168,30 +168,30 @@ export default function Home() {
                     placeholder="// Paste your code here..."
                     className="w-full h-full bg-transparent border-none focus:ring-0 resize-none font-mono leading-relaxed text-neutral-900 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600"
                   />
-                  <div className="absolute bottom-4 right-4 z-20">
-                    <button
-                      onClick={handleReview}
-                      disabled={loading || !code.trim()}
-                      className={cn(
-                        "flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all shadow-lg active:scale-95",
-                        loading || !code.trim()
-                          ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-400 dark:text-neutral-500 cursor-not-allowed"
-                          : "bg-blue-600 text-white hover:bg-blue-700 shadow-blue-500/20"
-                      )}
-                    >
-                      {loading ? (
-                        <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                          Analyzing...
-                        </>
-                      ) : (
-                        <>
-                          <Sparkles className="w-5 h-5" />
-                          Review Code
-                        </>
-                      )}
-                    </button>
-                  </div>
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    onClick={handleReview}
+                    disabled={loading || !code.trim()}
+                    className={cn(
+                      "w-full sm:w-auto justify-center flex items-center gap-2 px-5 sm:px-6 py-3 rounded-full font-semibold transition-all shadow-lg active:scale-95",
+                      loading || !code.trim()
+                        ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-400 dark:text-neutral-500 cursor-not-allowed"
+                        : "bg-blue-600 text-white hover:bg-blue-700 shadow-blue-500/20"
+                    )}
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Analyzing...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-5 h-5" />
+                        Review Code
+                      </>
+                    )}
+                  </button>
                 </div>
               </div>
 
@@ -202,7 +202,7 @@ export default function Home() {
                   <span className="font-medium">AI Feedback</span>
                 </div>
 
-                <div className="flex-1 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/30 dark:bg-neutral-900/30 overflow-y-auto custom-scrollbar">
+                <div className="flex-1 min-h-[320px] lg:min-h-0 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/30 dark:bg-neutral-900/30 overflow-y-auto custom-scrollbar">
                   <AnimatePresence mode="wait">
                     {loading ? (
                       <motion.div
@@ -253,7 +253,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="h-[calc(100vh-350px)] min-h-[500px]"
+              className="min-h-0 lg:min-h-[560px]"
             >
               <CodeTranslator apiKey={apiKey} />
             </motion.div>

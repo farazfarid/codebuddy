@@ -58,20 +58,20 @@ export function CodeTranslator({ apiKey }: CodeTranslatorProps) {
     };
 
     return (
-        <div className="flex flex-col gap-6 h-full">
+        <div className="flex flex-col gap-6 h-full min-h-0">
             {/* Controls */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 bg-white/50 dark:bg-neutral-900/50 rounded-xl border border-neutral-200 dark:border-neutral-800">
-                <div className="flex items-center gap-4 w-full md:w-auto">
-                    <LanguageSelector value={sourceLanguage} onChange={setSourceLanguage} />
-                    <ArrowRight className="w-5 h-5 text-neutral-400" />
-                    <LanguageSelector value={targetLanguage} onChange={setTargetLanguage} />
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-4 bg-white/50 dark:bg-neutral-900/50 rounded-xl border border-neutral-200 dark:border-neutral-800">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full lg:w-auto">
+                    <LanguageSelector value={sourceLanguage} onChange={setSourceLanguage} className="sm:w-[180px]" />
+                    <ArrowRight className="w-5 h-5 text-neutral-400 mx-auto rotate-90 sm:mx-0 sm:rotate-0" />
+                    <LanguageSelector value={targetLanguage} onChange={setTargetLanguage} className="sm:w-[180px]" />
                 </div>
 
                 <button
                     onClick={handleTranslate}
                     disabled={loading || !sourceCode.trim()}
                     className={cn(
-                        "flex items-center gap-2 px-6 py-2 rounded-lg font-semibold transition-all shadow-md active:scale-95 w-full md:w-auto justify-center",
+                        "flex items-center gap-2 px-6 py-2 rounded-lg font-semibold transition-all shadow-md active:scale-95 w-full lg:w-auto justify-center",
                         loading || !sourceCode.trim()
                             ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-400 dark:text-neutral-500 cursor-not-allowed"
                             : "bg-blue-600 text-white hover:bg-blue-700 shadow-blue-500/20"
@@ -103,13 +103,13 @@ export function CodeTranslator({ apiKey }: CodeTranslatorProps) {
             )}
 
             {/* Editors Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1 min-h-[500px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 flex-1 min-h-0 lg:min-h-[500px]">
                 {/* Source Input */}
                 <div className="flex flex-col gap-2 h-full">
                     <label className="text-sm font-medium text-neutral-600 dark:text-neutral-400 pl-1">
                         Source Code ({sourceLanguage})
                     </label>
-                    <div className="relative flex-1 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 shadow-sm overflow-hidden group focus-within:ring-2 focus-within:ring-blue-500/50 transition-all">
+                    <div className="relative flex-1 min-h-[280px] lg:min-h-0 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 shadow-sm overflow-hidden group focus-within:ring-2 focus-within:ring-blue-500/50 transition-all">
                         <CodeInput
                             value={sourceCode}
                             onChange={setSourceCode}
@@ -125,7 +125,7 @@ export function CodeTranslator({ apiKey }: CodeTranslatorProps) {
                     <label className="text-sm font-medium text-neutral-600 dark:text-neutral-400 pl-1">
                         Translated Code ({targetLanguage})
                     </label>
-                    <div className="relative flex-1 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 shadow-sm overflow-hidden transition-all">
+                    <div className="relative flex-1 min-h-[280px] lg:min-h-0 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 shadow-sm overflow-hidden transition-all">
                         {loading ? (
                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm z-10 gap-4">
                                 <Loader2 className="w-12 h-12 text-blue-500 animate-spin" />

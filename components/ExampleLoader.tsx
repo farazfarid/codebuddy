@@ -35,13 +35,15 @@ export function ExampleLoader({ onLoad, className }: ExampleLoaderProps) {
     return (
         <button
             onClick={() => onLoad(EXAMPLE_CODE, "javascript")}
+            aria-label="Load example code"
+            title="Load Example"
             className={cn(
-                "flex items-center gap-2 text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline transition-colors",
+                "flex items-center gap-2 text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline transition-colors whitespace-nowrap",
                 className
             )}
         >
             <Lightbulb className="w-3 h-3" />
-            Load Example
+            <span className="hidden sm:inline">Load Example</span>
         </button>
     );
 }
